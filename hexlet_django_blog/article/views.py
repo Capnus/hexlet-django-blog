@@ -1,7 +1,12 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from hexlet_django_blog.views import IndexView
 
+class IndexViewArticle(IndexView):
 
-def index(request):
-    return render(request, 'articles/index.html', context={
-        'blog': 'hexlet_django_blog',
-    })
+    template_name = 'articles/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['blog'] = 'Nickolas'
+        return context
+    
